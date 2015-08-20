@@ -1,4 +1,4 @@
-package algorithms;
+package managers;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ArrayManager {
 	
-	private ArrayManager() {	}
+	private ArrayManager() { }
 
 	private static final String[] array100 = {
 		"Array-100-Random.txt",
@@ -39,19 +39,21 @@ public class ArrayManager {
 		"Array-10000-Reverse-Sorted.txt"
 	};
 
-	private static int RandomSortedIndex = 0;
-	private static int AlmostSortedIndex1 = 1;
-	private static int AlmostSortedIndex2 = 2;
-	private static int AlmostSortedIndex3 = 3;
-	private static int AlmostSortedIndex4 = 4;
-	private static int AlmostSortedIndex5 = 5;
-	private static int ReverseSortedIndex = 6;
-
+	
+	// ARRAY TYPE: 
+	public static int TypeRandom = 0; // Not sorted / Randomly arranged
+	public static int TypeAlmostSorted1 = 1; // 10% sorted recurring fragments
+	public static int TypeAlmostSorted2 = 2; // 20% sorted recurring fragments
+	public static int TypeAlmostSorted3 = 3; // 33% sorted recurring fragments
+	public static int TypeAlmostSorted4 = 4; // 40% sorted recurring fragments
+	public static int TypeAlmostSorted5 = 5; // 50% sorted recurring fragments
+	public static int TypeReverseSorted = 6; // Reverse sorted
+	//END of ARRAY TYPES
+	
 	public static int Size100 = 100;
 	public static int Size1000 = 1000;
 	public static int Size10000 = 10000;
 
-	private static int arrayIndex = 0;
 	private static String lastArrayName;
 	private static BufferedReader arrayReader;
 
@@ -67,7 +69,6 @@ public class ArrayManager {
 					arrayReader = null;
 				} catch (IOException e) { }
 
-			arrayIndex = 0;
 			lastArrayName = null;
 		}
 
@@ -87,7 +88,6 @@ public class ArrayManager {
 						arrayReader = null;
 					} catch (IOException e) { }
 
-				arrayIndex = 0;
 				lastArrayName = null;
 			}
 			else {
@@ -117,7 +117,7 @@ public class ArrayManager {
 
          for (int i = 1; i < n; i++)
          {
-             if (data[i - 1] > data[i])
+             if (data[i - 1] >= data[i])
                  subsetCount++;
          }
          runs = subsetCount/(double) n;
@@ -129,13 +129,13 @@ public class ArrayManager {
         switch (size)
         {
             case 100:
-                return array100[RandomSortedIndex];
+                return array100[TypeRandom];
             case 1000:
-                return array1000[RandomSortedIndex];
+                return array1000[TypeRandom];
             case 10000:
-                return array10000[RandomSortedIndex];
+                return array10000[TypeRandom];
         }
-        return array100[RandomSortedIndex];
+        return array100[TypeRandom];
     }
 
     public static String getReversedArrayOfSize(int size)
@@ -143,13 +143,13 @@ public class ArrayManager {
         switch (size)
         {
             case 100:
-                return array100[ReverseSortedIndex];
+                return array100[TypeReverseSorted];
             case 1000:
-                return array1000[ReverseSortedIndex];
+                return array1000[TypeReverseSorted];
             case 10000:
-                return array10000[ReverseSortedIndex];
+                return array10000[TypeReverseSorted];
         }
-        return array100[RandomSortedIndex];
+        return array100[TypeRandom];
     }
 
     public static String getAlmostSortedArrayOfSize(int size, int preSortednessDegree)
@@ -160,49 +160,49 @@ public class ArrayManager {
                 switch (preSortednessDegree)
                 {
                     case 1: 
-                        return array100[AlmostSortedIndex1];
+                        return array100[TypeAlmostSorted1];
                     case 2:
-                        return array100[AlmostSortedIndex2];
+                        return array100[TypeAlmostSorted2];
                     case 3:
-                        return array100[AlmostSortedIndex3];
+                        return array100[TypeAlmostSorted3];
                     case 4:
-                        return array100[AlmostSortedIndex4];
+                        return array100[TypeAlmostSorted4];
                     case 5:
-                        return array100[AlmostSortedIndex5];
+                        return array100[TypeAlmostSorted5];
                 }
-                return array100[AlmostSortedIndex1];
+                return array100[TypeAlmostSorted1];
             case 1000:
                 switch (preSortednessDegree)
                 {
                     case 1:
-                        return array1000[AlmostSortedIndex1];
+                        return array1000[TypeAlmostSorted1];
                     case 2:
-                        return array1000[AlmostSortedIndex2];
+                        return array1000[TypeAlmostSorted2];
                     case 3:
-                        return array1000[AlmostSortedIndex3];
+                        return array1000[TypeAlmostSorted3];
                     case 4:
-                        return array1000[AlmostSortedIndex4];
+                        return array1000[TypeAlmostSorted4];
                     case 5:
-                        return array1000[AlmostSortedIndex5];
+                        return array1000[TypeAlmostSorted5];
                 }
-                return array1000[AlmostSortedIndex1];
+                return array1000[TypeAlmostSorted1];
             case 10000:
                 switch (preSortednessDegree)
                 {
                     case 1:
-                        return array10000[AlmostSortedIndex1];
+                        return array10000[TypeAlmostSorted1];
                     case 2:
-                        return array10000[AlmostSortedIndex2];
+                        return array10000[TypeAlmostSorted2];
                     case 3:
-                        return array10000[AlmostSortedIndex3];
+                        return array10000[TypeAlmostSorted3];
                     case 4:
-                        return array10000[AlmostSortedIndex4];
+                        return array10000[TypeAlmostSorted4];
                     case 5:
-                        return array10000[AlmostSortedIndex5];
+                        return array10000[TypeAlmostSorted5];
                 }
-                return array10000[AlmostSortedIndex1];
+                return array10000[TypeAlmostSorted1];
         }
-        return array100[AlmostSortedIndex1];
+        return array100[TypeAlmostSorted1];
     }
     
     @Override
