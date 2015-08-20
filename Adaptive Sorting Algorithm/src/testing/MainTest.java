@@ -26,7 +26,7 @@ public class MainTest {
 		ExecutionManager.processArrayOfType(10000, 2, "10000-AlmostSorted-2");
 		ExecutionManager.processArrayOfType(10000, 3, "10000-AlmostSorted-3");
 		ExecutionManager.processArrayOfType(10000, 4, "10000-AlmostSorted-4");
-		ExecutionManager.processArrayOfType(10000, 5, "1000-AlmostSorted-5");
+		ExecutionManager.processArrayOfType(10000, 5, "10000-AlmostSorted-5");
 		ExecutionManager.processArrayOfType(10000, 6, "10000-ReverseSorted");
 		
 		System.out.println("End.");
