@@ -32,6 +32,7 @@ public class ExecutionManager {
 		Result result = null;
 		
 		data = loadNextArray(size, type);
+		int i = 1;
 		while(data != null) {
 			result = executeAllSortingAlgorithms(data, type);
 			writeResultToFile(filename, result);
@@ -90,6 +91,14 @@ public class ExecutionManager {
 			}
 			return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 5));
 		}
+		case 6: {
+			switch(size) {
+			case 100: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(100));
+			case 1000: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(1000));
+			case 10000: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(10000));
+			}
+			return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(100));
+		}
 		}
 		
 		return data;
@@ -105,14 +114,14 @@ public class ExecutionManager {
 	}
 	
 	private static void writeResultToFile(String filename, Result result) {
-		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(filename + ".json")), true)) {
+		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter("Results/" + filename + ".json", true)), true)) {
 			Gson gson = new GsonBuilder().serializeNulls().serializeSpecialFloatingPointValues().create();
 			pr.println(gson.toJson(result));
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("Succesfully saved results to file.");
+		//System.out.println("Succesfully saved results to file.");
 	}
 	
 	

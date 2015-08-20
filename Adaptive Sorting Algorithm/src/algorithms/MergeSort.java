@@ -6,6 +6,7 @@ public class MergeSort extends AbstractSort {
 
 	@Override
 	public void sort(int[] data) {
+		workingArray = new int[data.length];
 		mergesort(data, 0, data.length - 1);
 	}
 
@@ -19,10 +20,9 @@ public class MergeSort extends AbstractSort {
 	}
 
 	private void merge(int data[], int low, int middle, int high) {
-		System.arraycopy(data, low, workingArray, low, high - low + 1);
-		/*for (int i = low; i <= high; i++) {
+		for (int i = low; i <= high; i++) {
 			workingArray[i] = data[i];
-		}*/
+		}
 
 		int i = low;
 		int j = middle + 1;

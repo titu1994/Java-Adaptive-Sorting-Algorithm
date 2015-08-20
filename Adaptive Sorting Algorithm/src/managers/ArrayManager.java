@@ -96,11 +96,15 @@ public class ArrayManager {
 				hold = new int[parts.length];
 				
 				for(int i = 0; i < parts.length; i++) 
-					hold[i] = Integer.parseInt(parts[i]);
+					hold[i] = Integer.parseInt(parts[i].trim());
+				
+				//System.out.println("ArrayManager: Array is not empty.");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//if(hold == null)
+		//	System.out.println("ArrayManager: Array is empty.");
 		return hold;
 	}
 	
