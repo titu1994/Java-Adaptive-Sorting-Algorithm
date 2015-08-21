@@ -38,6 +38,16 @@ public class ArrayManager {
 		"Array-10000-Almost-Sorted-0.5.txt",
 		"Array-10000-Reverse-Sorted.txt"
 	};
+	
+	private static final String[] array1000000 = {
+		"Array-1000000-Random.txt",
+		"Array-1000000-Almost-Sorted-0.1.txt",
+		"Array-1000000-Almost-Sorted-0.2.txt",
+		"Array-1000000-Almost-Sorted-0.33.txt",
+		"Array-1000000-Almost-Sorted-0.4.txt",
+		"Array-1000000-Almost-Sorted-0.5.txt",
+		"Array-1000000-Reverse-Sorted.txt"
+	};
 
 	
 	// ARRAY TYPE: 
@@ -53,6 +63,7 @@ public class ArrayManager {
 	public static int Size100 = 100;
 	public static int Size1000 = 1000;
 	public static int Size10000 = 10000;
+	public static int Size1000000 = 1000000;
 
 	private static String lastArrayName;
 	private static BufferedReader arrayReader;
@@ -138,6 +149,8 @@ public class ArrayManager {
                 return array1000[TypeRandom];
             case 10000:
                 return array10000[TypeRandom];
+            case 1000000:
+                return array1000000[TypeRandom];
         }
         return array100[TypeRandom];
     }
@@ -152,6 +165,8 @@ public class ArrayManager {
                 return array1000[TypeReverseSorted];
             case 10000:
                 return array10000[TypeReverseSorted];
+            case 1000000:
+                return array1000000[TypeReverseSorted];
         }
         return array100[TypeRandom];
     }
@@ -205,6 +220,21 @@ public class ArrayManager {
                         return array10000[TypeAlmostSorted5];
                 }
                 return array10000[TypeAlmostSorted1];
+            case 1000000:
+                switch (preSortednessDegree)
+                {
+                    case 1:
+                        return array1000000[TypeAlmostSorted1];
+                    case 2:
+                        return array1000000[TypeAlmostSorted2];
+                    case 3:
+                        return array1000000[TypeAlmostSorted3];
+                    case 4:
+                        return array1000000[TypeAlmostSorted4];
+                    case 5:
+                        return array1000000[TypeAlmostSorted5];
+                }
+                return array1000000[TypeAlmostSorted1];
         }
         return array100[TypeAlmostSorted1];
     }
