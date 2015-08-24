@@ -11,6 +11,7 @@ import algorithms.InsertionSort;
 import algorithms.MergeSort;
 import algorithms.ParallelMergeSort;
 import algorithms.QuickSort;
+import algorithms.RunSort;
 import algorithms.ShellSort;
 
 import com.google.gson.Gson;
@@ -44,63 +45,84 @@ public class ExecutionManager {
 		switch(type) {
 		case 0: {
 			switch(size) {
+			case 50: return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(50));
 			case 100: return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(100));
 			case 1000: return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(1000));
 			case 10000: return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(10000));
+			case 100000: return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(100000));
+			case 500000: return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(500000));
 			case 1000000: return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(1000000));
 			}
 			return ArrayManager.getNextArray(ArrayManager.getRandomArrayOfSize(100));
 		}
 		case 1: {
 			switch(size) {
+			case 50: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(50, 1));
 			case 100: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 1));
 			case 1000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000, 1));
 			case 10000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(10000, 1));
+			case 100000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100000, 1));
+			case 500000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(500000, 1));
 			case 1000000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000000, 1));
 			}
 			return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 1));
 		}
 		case 2: {
 			switch(size) {
+			case 50: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(50, 2));
 			case 100: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 2));
 			case 1000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000, 2));
 			case 10000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(10000, 2));
+			case 100000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100000, 2));
+			case 500000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(500000, 2));
 			case 1000000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000000, 2));
 			}
 			return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 2));
 		}
 		case 3: {
 			switch(size) {
+			case 50: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(50, 3));
 			case 100: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 3));
 			case 1000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000, 3));
 			case 10000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(10000, 3));
+			case 100000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100000, 3));
+			case 500000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(500000, 3));
 			case 1000000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000000, 3));
 			}
 			return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 3));
 		}
 		case 4: {
 			switch(size) {
+			case 50: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(50, 4));
 			case 100: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 4));
 			case 1000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000, 4));
 			case 10000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(10000, 4));
+			case 100000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100000, 4));
+			case 500000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(500000, 4));
 			case 1000000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000000, 4));
 			}
 			return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 4));
 		}
 		case 5: {
 			switch(size) {
+			case 50: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(50, 5));
 			case 100: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 5));
 			case 1000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000, 5));
 			case 10000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(10000, 5));
+			case 100000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100000, 5));
+			case 500000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(500000, 5));
 			case 1000000: return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(1000000, 5));
 			}
 			return ArrayManager.getNextArray(ArrayManager.getAlmostSortedArrayOfSize(100, 5));
 		}
 		case 6: {
 			switch(size) {
+			case 50: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(50));
 			case 100: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(100));
 			case 1000: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(1000));
 			case 10000: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(10000));
+			case 100000: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(100000));
+			case 500000: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(500000));
 			case 1000000: return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(1000000));
 			}
 			return ArrayManager.getNextArray(ArrayManager.getReversedArrayOfSize(100));
@@ -116,7 +138,8 @@ public class ExecutionManager {
 											 	   new HeapSort(),
 											 	   new MergeSort(),
 											 	   new QuickSort(),
-											 	   new ParallelMergeSort());
+											 	   new ParallelMergeSort(),
+											 	   new RunSort());
 	}
 	
 	private static void writeResultToFile(String filename, Result result) {
@@ -172,6 +195,8 @@ public class ExecutionManager {
 				result.quickSortExecutionTime = total;
 			else if(sortingAlgorithms[i] instanceof ParallelMergeSort)
 				result.parallelMergeSortExecutionTime = total;
+			else if(sortingAlgorithms[i] instanceof RunSort)
+				result.runSortExecutionTime = total;
 		}
 		
 		return result;		
@@ -187,6 +212,7 @@ public class ExecutionManager {
 		public long mergeSortExecutionTime;
 		public long quickSortExecutionTime;
 		public long parallelMergeSortExecutionTime;
+		public long runSortExecutionTime;
 		
 		public Result() {}
 	}

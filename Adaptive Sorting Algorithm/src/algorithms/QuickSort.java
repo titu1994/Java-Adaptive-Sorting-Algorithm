@@ -3,7 +3,7 @@ package algorithms;
 import java.util.Arrays;
 
 public class QuickSort extends AbstractSort {
-	private int THRESHOLD = 36;
+	private int THRESHOLD = 1000;
 	
 	@Override
 	public void sort(int[] data) {
