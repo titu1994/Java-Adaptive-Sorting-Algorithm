@@ -69,6 +69,22 @@ public class MainTest {
 		ExecutionManager.processArrayOfType(50, 6, "50-ReverseSorted");
 		System.out.println("Reverse Sorted done");*/
 		
+		
+		/*ExecutionManager.processArrayOfType(500, 0, "500-Random");
+		System.out.println("Random done");
+		ExecutionManager.processArrayOfType(500, 1, "500-AlmostSorted-1");
+		System.out.println("Almost Sorted 1 done");
+		ExecutionManager.processArrayOfType(500, 2, "500-AlmostSorted-2");
+		System.out.println("Almost Sorted 2 done");
+		ExecutionManager.processArrayOfType(500, 3, "500-AlmostSorted-3");
+		System.out.println("Almost Sorted 3 done");
+		ExecutionManager.processArrayOfType(500, 4, "500-AlmostSorted-4");
+		System.out.println("Almost Sorted 4 done");
+		ExecutionManager.processArrayOfType(500, 5, "500-AlmostSorted-5");
+		System.out.println("Almost Sorted 5 done");
+		ExecutionManager.processArrayOfType(500, 6, "500-ReverseSorted");
+		System.out.println("Reverse Sorted done");*/
+		
 		System.out.println("End.");
 	}
 

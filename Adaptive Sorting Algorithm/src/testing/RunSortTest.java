@@ -1,12 +1,12 @@
 package testing;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 import managers.ArrayManager;
-import algorithms.AbstractSort;
+import algorithms.ParallelMergeSort;
 import algorithms.RunSort;
-import algorithms.ShellSort;
 
 public class RunSortTest {
 
@@ -32,6 +32,7 @@ public class RunSortTest {
 		}
 		*/
 		dataCopy = ArrayManager.copyArray(data);
+		int[] dataCopy2 = ArrayManager.copyArray(data);
 
 		RunSort runsort = new RunSort();
 		long t1 = System.nanoTime();
@@ -42,7 +43,7 @@ public class RunSortTest {
 		System.out.println("Runs : " + runsort.runs);
 		System.out.println("Execution Time RunSort : " + time);
 		
-		AbstractSort is = new ShellSort();
+		ParallelMergeSort is = new ParallelMergeSort();
 		t1 = System.nanoTime();
 		is.sort(dataCopy);
 		t2 = System.nanoTime();
@@ -50,7 +51,12 @@ public class RunSortTest {
 		time = (t2 - t1) / 1000;
 		System.out.println("Execution Time In Micro Seconds : " + time);
 		
-		System.out.println("Sort Type : " + runsort.type);
+		t1 = System.nanoTime();
+		Arrays.parallelSort(dataCopy2);
+		t2 = System.nanoTime();
+		
+		time = (t2 - t1) / 1000;
+		System.out.println("Execution Time (A.PS) In Micro Seconds : " + time);
 	}
 
 }

@@ -10,12 +10,10 @@ public class RunSort extends AbstractSort {
 		2085837936 };
 	
 	public double runs = 0;
-	public int type;
 	
 	@Override
 	public void sort(int[] data) {
 		int n = data.length;
-		
 		if(n < 100) {
 			int subsetCount = 1;
 			for (int i = 1; i < n; i++)
@@ -28,7 +26,7 @@ public class RunSort extends AbstractSort {
 			if(runs <= 0.57) {
 				// Insertion Sort 
 				int temp, j;
-				for(int i = 1; i < data.length; i++) {
+				for(int i = 1; i < n; i++) {
 					temp = data[i];
 					for(j = i - 1; j >= 0 && temp < data[j]; j--)
 						data[j + 1] = data[j];
@@ -53,7 +51,7 @@ public class RunSort extends AbstractSort {
 				}
 			}
 		}
-		else if(n >= 100 && n < 1000) {
+		else if(n < 1000) {
 			// Shell Sort
 			for (int l = incs.length / incs[0]; l > 0;) {
 				int m = incs[--l];
@@ -70,7 +68,7 @@ public class RunSort extends AbstractSort {
 				}
 			}
 		}
-		else if(n >= 1000) {
+		else {
 			// Parallel Merge Sort
 			Arrays.parallelSort(data);
 		}

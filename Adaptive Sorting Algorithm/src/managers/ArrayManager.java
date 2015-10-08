@@ -28,6 +28,16 @@ public class ArrayManager {
 		"Array-100-Almost-Sorted-0.5.txt",
 		"Array-100-Reverse-Sorted.txt"
 	};
+	
+	private static final String[] array500 = {
+		"Array-500-Random.txt",
+		"Array-500-Almost-Sorted-0.1.txt",
+		"Array-500-Almost-Sorted-0.2.txt",
+		"Array-500-Almost-Sorted-0.33.txt",
+		"Array-500-Almost-Sorted-0.4.txt",
+		"Array-500-Almost-Sorted-0.5.txt",
+		"Array-500-Reverse-Sorted.txt"
+	};
 
 	private static final String[] array1000 = {
 		"Array-1000-Random.txt",
@@ -92,6 +102,7 @@ public class ArrayManager {
 
 	public static int Size50 = 50;
 	public static int Size100 = 100;
+	public static int Size500 = 500;
 	public static int Size1000 = 1000;
 	public static int Size10000 = 10000;
 	public static int Size100000 = 100000;
@@ -180,6 +191,8 @@ public class ArrayManager {
 			return array50[TypeRandom];
 		case 100:
 			return array100[TypeRandom];
+		case 500:
+			return array500[TypeRandom];
 		case 1000:
 			return array1000[TypeRandom];
 		case 10000:
@@ -202,6 +215,8 @@ public class ArrayManager {
 			return array50[TypeReverseSorted];
 		case 100:
 			return array100[TypeReverseSorted];
+		case 500:
+			return array500[TypeReverseSorted];
 		case 1000:
 			return array1000[TypeReverseSorted];
 		case 10000:
@@ -234,7 +249,7 @@ public class ArrayManager {
 			case 5:
 				return array50[TypeAlmostSorted5];
 			}
-			return array100[TypeAlmostSorted1];
+			return array50[TypeAlmostSorted1];
 		case 100:
 			switch (preSortednessDegree)
 			{
@@ -250,6 +265,21 @@ public class ArrayManager {
 				return array100[TypeAlmostSorted5];
 			}
 			return array100[TypeAlmostSorted1];
+		case 500:
+			switch (preSortednessDegree)
+			{
+			case 1: 
+				return array500[TypeAlmostSorted1];
+			case 2:
+				return array500[TypeAlmostSorted2];
+			case 3:
+				return array500[TypeAlmostSorted3];
+			case 4:
+				return array500[TypeAlmostSorted4];
+			case 5:
+				return array500[TypeAlmostSorted5];
+			}
+			return array500[TypeAlmostSorted1];
 		case 1000:
 			switch (preSortednessDegree)
 			{
