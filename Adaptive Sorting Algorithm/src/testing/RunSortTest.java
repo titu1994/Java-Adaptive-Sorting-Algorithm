@@ -1,12 +1,12 @@
 package testing;
 
+import algorithms.AdaptiveSort;
+import algorithms.ParallelMergeSort;
+import managers.ArrayManager;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-
-import managers.ArrayManager;
-import algorithms.ParallelMergeSort;
-import algorithms.RunSort;
 
 public class RunSortTest {
 
@@ -34,13 +34,12 @@ public class RunSortTest {
 		dataCopy = ArrayManager.copyArray(data);
 		int[] dataCopy2 = ArrayManager.copyArray(data);
 
-		RunSort runsort = new RunSort();
+		AdaptiveSort runsort = new AdaptiveSort();
 		long t1 = System.nanoTime();
 		runsort.sort(data);
 		long t2 = System.nanoTime();
 		
 		long time = (t2 - t1) / 1000;
-		System.out.println("Runs : " + runsort.runs);
 		System.out.println("Execution Time RunSort : " + time);
 		
 		ParallelMergeSort is = new ParallelMergeSort();
@@ -56,7 +55,7 @@ public class RunSortTest {
 		t2 = System.nanoTime();
 		
 		time = (t2 - t1) / 1000;
-		System.out.println("Execution Time (A.PS) In Micro Seconds : " + time);
+		System.out.println("Execution Time (Array.parallelSort()) In Micro Seconds : " + time);
 	}
 
 }

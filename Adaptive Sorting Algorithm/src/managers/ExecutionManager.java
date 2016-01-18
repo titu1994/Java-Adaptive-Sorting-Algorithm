@@ -137,7 +137,8 @@ public class ExecutionManager {
 											 	   new HeapSort(),
 											 	   new MergeSort(),
 											 	   new QuickSort(),
-											 	   new ParallelMergeSort());
+											 	   new ParallelMergeSort(),
+                                                   new AdaptiveSort());
 	}
 	
 	private static void writeResultToFile(String filename, Result result) {
@@ -193,8 +194,11 @@ public class ExecutionManager {
 				result.quickSortExecutionTime = total;
 			else if(sortingAlgorithms[i] instanceof ParallelMergeSort)
 				result.parallelMergeSortExecutionTime = total;
-			else if(sortingAlgorithms[i] instanceof AdaptiveSort)
-				result.adaptiveSortExecutionTime = total;
+			else if(sortingAlgorithms[i] instanceof AdaptiveSort) {
+                result.adaptiveSortExecutionTime = total;
+                //System.out.println("Adaptive Sort Time : " + result.adaptiveSortExecutionTime);
+            }
+
 		}
 		
 		return result;		
