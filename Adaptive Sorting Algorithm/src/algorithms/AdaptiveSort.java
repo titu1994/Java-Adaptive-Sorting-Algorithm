@@ -1,7 +1,5 @@
 package algorithms;
 
-import managers.ArrayManager;
-
 import java.util.Arrays;
 
 /**
@@ -25,26 +23,116 @@ public class AdaptiveSort extends AbstractSort{
         int n = data.length;
 
         if(n <= 100) {
-            long runs = (long) (ArrayManager.computeRuns(data) * 100000);
+            // Compute Runs
+            long runs = 0;
+            int subsetCount = 1;
+
+            for (int i = 1; i < n; i++)
+            {
+                if (data[i - 1] >= data[i])
+                    subsetCount++;
+            }
+            runs = (long) ((subsetCount/ (double) n) * 100000);
             //System.out.println(runs);
 
+            //System.out.print("Runs : " + runs + " ");
+            //long t1 = System.nanoTime();
+
+            if(runs > 68799) {
+                //System.out.println("Else : " + (System.nanoTime() - t1));
+
+                shellsortInternal(data);
+            }
+            else if(n <= 50 && runs > 44000) {
+                //System.out.println("n <= 50 && runs > 44000 && runs <= 68799 : " + (System.nanoTime() - t1));
+
+                Arrays.parallelSort(data);
+            }
+            else if(n <= 50 && runs > 25388) {
+                //System.out.println("n <= 50 && runs > 25388 && runs <= 44000 : " + (System.nanoTime() - t1));
+
+                workingArray = new int[data.length];
+                mergesort(data, 0, data.length - 1);
+            }
+            else {
+                //insertionSortInternal(data);
+                //System.out.println("Runs < 25388 : " + (System.nanoTime() - t1));
+
+                int temp, j;
+                for(int i = 1; i < data.length; i++) {
+                    temp = data[i];
+                    for(j = i - 1; j >= 0 && temp < data[j]; j--)
+                        data[j + 1] = data[j];
+                    data[j + 1] = temp;
+                }
+            }
+
+            /*
+            //Attempt 2
+            if(runs <= 25388) {
+                //insertionSortInternal(data);
+                System.out.println("Runs < 25388 : " + (System.nanoTime() - t1));
+
+                int temp, j;
+                for(int i = 1; i < data.length; i++) {
+                    temp = data[i];
+                    for(j = i - 1; j >= 0 && temp < data[j]; j--)
+                        data[j + 1] = data[j];
+                    data[j + 1] = temp;
+                }
+            }
+            else if(n <= 50 && runs <= 44000) {
+                System.out.println("n <= 50 && runs > 25388 && runs <= 44000 : " + (System.nanoTime() - t1));
+
+                workingArray = new int[data.length];
+                mergesort(data, 0, data.length - 1);
+            }
+            else if(n <= 50 && runs <= 68799) {
+                System.out.println("n <= 50 && runs > 44000 && runs <= 68799 : " + (System.nanoTime() - t1));
+
+                Arrays.parallelSort(data);
+            }
+            else {
+                System.out.println("Else : " + (System.nanoTime() - t1));
+
+                shellsortInternal(data);
+            }
+            */
+
+            /*
+            // Attempt 1
             if(runs <= 11000) {
                 // Insertion Sort
-                insertionSortInternal(data);
+                //insertionSortInternal(data);
+                int temp, j;
+                for(int i = 1; i < data.length; i++) {
+                    temp = data[i];
+                    for(j = i - 1; j >= 0 && temp < data[j]; j--)
+                        data[j + 1] = data[j];
+                    data[j + 1] = temp;
+                }
             }
             else {
                 if(runs <= 68799) {
                     if (runs <= 25388) {
                         // Insertion Sort
-                        insertionSortInternal(data);
+                        //insertionSortInternal(data);
+                        int temp, j;
+                        for(int i = 1; i < data.length; i++) {
+                            temp = data[i];
+                            for(j = i - 1; j >= 0 && temp < data[j]; j--)
+                                data[j + 1] = data[j];
+                            data[j + 1] = temp;
+                        }
                     }
                     else {
                         if(n <= 50) {
                             if(runs <= 44000) {
                                 // Merge Sort
-                                workingArray = new int[data.length];
-                                mergesort(data, 0, data.length - 1);
+                                //workingArray = new int[data.length];
+                                //mergesort(data, 0, data.length - 1);
 
+                                Arrays.parallelSort(data);
                             }
                             else {
                                 // Parallel Merge Sort
@@ -54,22 +142,41 @@ public class AdaptiveSort extends AbstractSort{
                         }
                         else {
                             // Insertion Sort
-                            insertionSortInternal(data);
-                            //System.out.println("IS");
+                            //insertionSortInternal(data);
+                            int temp, j;
+                            for(int i = 1; i < data.length; i++) {
+                                temp = data[i];
+                                for(j = i - 1; j >= 0 && temp < data[j]; j--)
+                                    data[j + 1] = data[j];
+                                data[j + 1] = temp;
+                            }
                         }
                     }
                 }
                 else {
                     // Shell Sort
-                    shellsortInternal(data);
-                    //System.out.println("SHS");
+                    //shellsortInternal(data);
+                    for (int l = incs.length / incs[0]; l > 0;) {
+                        int m = incs[--l];
+                        for (int i = m; i < n; ++i) {
+                            int j = i - m;
+                            if (data[i] < data[j]) {
+                                int tempItem = data[i];
+                                do {
+                                    data[j + m] = data[j];
+                                    j -= m;
+                                } while ((j >= 0) && (tempItem < data[j]));
+                                data[j + m] = tempItem;
+                            }
+                        }
+                    }
                 }
             }
+            */
         }
         else {
             // Parallel Merge Sort
             Arrays.parallelSort(data);
-            //System.out.println("PQS");
         }
     }
 

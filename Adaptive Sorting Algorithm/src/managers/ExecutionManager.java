@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 
 public class ExecutionManager {
 	
+	public static boolean APPEND_RESULT = true;
+	
 	private ExecutionManager() { }
 	
 	/**
@@ -142,7 +144,7 @@ public class ExecutionManager {
 	}
 	
 	private static void writeResultToFile(String filename, Result result) {
-		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter("Results/" + filename + ".json", true)), true)) {
+		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter("Results/" + filename + ".json", APPEND_RESULT)), true)) {
 			Gson gson = new GsonBuilder().serializeNulls().serializeSpecialFloatingPointValues().create();
 			pr.println(gson.toJson(result));
 		} catch (IOException e) {
