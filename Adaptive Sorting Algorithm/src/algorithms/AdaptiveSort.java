@@ -41,7 +41,21 @@ public class AdaptiveSort extends AbstractSort{
             if(runs > 68799) {
                 //System.out.println("Else : " + (System.nanoTime() - t1));
 
-                shellsortInternal(data);
+                //shellsortInternal(data);
+                for (int l = incs.length / incs[0]; l > 0;) {
+                    int m = incs[--l];
+                    for (int i = m; i < n; ++i) {
+                        int j = i - m;
+                        if (data[i] < data[j]) {
+                            int tempItem = data[i];
+                            do {
+                                data[j + m] = data[j];
+                                j -= m;
+                            } while ((j >= 0) && (tempItem < data[j]));
+                            data[j + m] = tempItem;
+                        }
+                    }
+                }
             }
             else if(n <= 50 && runs > 44000) {
                 //System.out.println("n <= 50 && runs > 44000 && runs <= 68799 : " + (System.nanoTime() - t1));
@@ -180,16 +194,6 @@ public class AdaptiveSort extends AbstractSort{
         }
     }
 
-    private static void insertionSortInternal(int data[]) {
-        int temp, j;
-        for(int i = 1; i < data.length; i++) {
-            temp = data[i];
-            for(j = i - 1; j >= 0 && temp < data[j]; j--)
-                data[j + 1] = data[j];
-            data[j + 1] = temp;
-        }
-    }
-
     private static void mergesort(int data[], int low, int high) {
         if (low < high) {
             int middle = low + (high - low) / 2;
@@ -224,21 +228,4 @@ public class AdaptiveSort extends AbstractSort{
         }
     }
 
-    private static void shellsortInternal(int data[]) {
-        int n = data.length;
-        for (int l = incs.length / incs[0]; l > 0;) {
-            int m = incs[--l];
-            for (int i = m; i < n; ++i) {
-                int j = i - m;
-                if (data[i] < data[j]) {
-                    int tempItem = data[i];
-                    do {
-                        data[j + m] = data[j];
-                        j -= m;
-                    } while ((j >= 0) && (tempItem < data[j]));
-                    data[j + m] = tempItem;
-                }
-            }
-        }
-    }
 }
