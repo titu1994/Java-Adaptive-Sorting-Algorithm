@@ -1,21 +1,13 @@
 package managers;
 
+import algorithms.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import algorithms.AbstractSort;
-import algorithms.HeapSort;
-import algorithms.InsertionSort;
-import algorithms.MergeSort;
-import algorithms.ParallelMergeSort;
-import algorithms.QuickSort;
-import algorithms.RunSort;
-import algorithms.ShellSort;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class ExecutionManager {
 	
@@ -24,7 +16,7 @@ public class ExecutionManager {
 	/**
 	 * Method to load the array from file to memory, execute all algorithms on the copies of the array, and write the result
 	 * of each execution into a file.
-	 * @param size - 100, 1000, 10000
+	 * @param size - 100, 1000, 10000...
 	 * @param type - 0 to 6 : See ArrayManager.Type... integers for meaning
 	 * @param filename - Filename to store the results
 	 */
@@ -201,26 +193,61 @@ public class ExecutionManager {
 				result.quickSortExecutionTime = total;
 			else if(sortingAlgorithms[i] instanceof ParallelMergeSort)
 				result.parallelMergeSortExecutionTime = total;
-//			else if(sortingAlgorithms[i] instanceof RunSort)
-//				result.runSortExecutionTime = total;
+			else if(sortingAlgorithms[i] instanceof AdaptiveSort)
+				result.adaptiveSortExecutionTime = total;
 		}
 		
 		return result;		
+	}
+	
+	public static void analyzeArrayOfType(int size, int type, String filename) {
+		int[] data = null;
+		RunsVsInvsResult result = null;
+		
+		data = loadNextArray(size, type);
+		while(data != null) {
+			result = analyzeDatasetAttributes(data, type);
+			writeResultToFile(filename, result);
+			data = loadNextArray(size, type);
+		}
+	}
+	
+	private static RunsVsInvsResult analyzeDatasetAttributes(int[] data, int type) {
+		RunsVsInvsResult result = new RunsVsInvsResult();
+		result.runs = ArrayManager.computeRuns(data);
+		result.invs = ArrayManager.computeInvs(data);
+		
+		return result;
+	}
+
+	private static void writeResultToFile(String filename, RunsVsInvsResult result) {
+		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter("Results-Plot/" + filename + ".json", true)), true)) {
+			Gson gson = new GsonBuilder().serializeNulls().serializeSpecialFloatingPointValues().create();
+			pr.println(gson.toJson(result));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 	
 	public static class Result {
 		public int arraySize;
 		public double runs;
 		public String arraytype;
+		public long adaptiveSortExecutionTime;
 		public long insertionSortExecutionTime;
 		public long shellSortExecutionTime;
 		public long heapSortExecutionTime;
 		public long mergeSortExecutionTime;
 		public long quickSortExecutionTime;
 		public long parallelMergeSortExecutionTime;
-		//public long runSortExecutionTime;
 		
 		public Result() {}
+	}
+	
+	public static class RunsVsInvsResult {
+		public double runs;
+		public double invs;
 	}
 
 }

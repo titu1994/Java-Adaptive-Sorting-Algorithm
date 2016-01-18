@@ -1,17 +1,12 @@
 package testing;
 
+import algorithms.*;
 import managers.ArrayManager;
-import managers.ExecutionManager;
-import algorithms.HeapSort;
-import algorithms.InsertionSort;
-import algorithms.MergeSort;
-import algorithms.ParallelMergeSort;
-import algorithms.QuickSort;
-import algorithms.ShellSort;
 
 public class TestCorrectness {
 
 	public static void main(String[] args) {
+		AdaptiveSort as = new AdaptiveSort();
 		InsertionSort is = new InsertionSort();
 		ShellSort ss = new ShellSort();
 		HeapSort hs = new HeapSort();
@@ -46,6 +41,10 @@ public class TestCorrectness {
 		copy = ArrayManager.copyArray(data);
 		parallelms.sort(copy);
 		System.out.println("Parallel Merge Sort - 100 Random " + isSorted(copy));
+
+        copy = ArrayManager.copyArray(data);
+        as.sort(copy);
+        System.out.println("Adaptive Sort - 100 Random " + isSorted(copy));
 		
 		
 		/**
@@ -76,6 +75,10 @@ public class TestCorrectness {
 		copy = ArrayManager.copyArray(data);
 		parallelms.sort(copy);
 		System.out.println("Parallel Merge Sort - 100 Reversed " + isSorted(copy));
+
+        copy = ArrayManager.copyArray(data);
+        as.sort(copy);
+        System.out.println("Adaptive Sort - 100 Reversed " + isSorted(copy));
 		
 		/**
 		 * 100 Almost Sorted 0.1
@@ -105,6 +108,10 @@ public class TestCorrectness {
 		copy = ArrayManager.copyArray(data);
 		parallelms.sort(copy);
 		System.out.println("Parallel Merge Sort - 100 Almost Sorted 0.1 " + isSorted(copy));
+
+        copy = ArrayManager.copyArray(data);
+        as.sort(copy);
+        System.out.println("Adaptive Sort - 100 Almost Sorted 0.1 " + isSorted(copy));
 		
 		/**
 		 * 100 Almost Sorted 0.2
@@ -134,6 +141,10 @@ public class TestCorrectness {
 		copy = ArrayManager.copyArray(data);
 		parallelms.sort(copy);
 		System.out.println("Parallel Merge Sort - 100 Almost Sorted 0.2 " + isSorted(copy));
+
+        copy = ArrayManager.copyArray(data);
+        as.sort(copy);
+        System.out.println("Adaptive Sort - 100 Almost Sorted 0.2 " + isSorted(copy));
 		
 		
 		/**
@@ -164,8 +175,10 @@ public class TestCorrectness {
 		copy = ArrayManager.copyArray(data);
 		parallelms.sort(copy);
 		System.out.println("Parallel Merge Sort - 100 Almost Sorted 0.33 " + isSorted(copy));
-		
-		
+
+        copy = ArrayManager.copyArray(data);
+        as.sort(copy);
+        System.out.println("Adaptive Sort - 100 Almost Sorted 0.33 " + isSorted(copy));
 		
 		/**
 		 * 100 Almost Sorted 0.4
@@ -195,6 +208,10 @@ public class TestCorrectness {
 		copy = ArrayManager.copyArray(data);
 		parallelms.sort(copy);
 		System.out.println("Parallel Merge Sort - 100 Almost Sorted 0.4 " + isSorted(copy));
+
+        copy = ArrayManager.copyArray(data);
+        as.sort(copy);
+        System.out.println("Adaptive Sort - 100 Almost Sorted 0.4 " + isSorted(copy));
 		
 		
 		/**
@@ -225,6 +242,10 @@ public class TestCorrectness {
 		copy = ArrayManager.copyArray(data);
 		parallelms.sort(copy);
 		System.out.println("Parallel Merge Sort - 100 Almost Sorted 0.5 " + isSorted(copy));
+
+        copy = ArrayManager.copyArray(data);
+        as.sort(copy);
+        System.out.println("Adaptive Sort - 100 Almost Sorted 0.5 " + isSorted(copy));
 		
 	}
 	
