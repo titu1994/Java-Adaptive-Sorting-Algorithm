@@ -140,6 +140,7 @@ public class ExecutionManager {
 											 	   new MergeSort(),
 											 	   new QuickSort(),
 											 	   new ParallelMergeSort(),
+				 								   new ParallelQuickSort(),
                                                    new AdaptiveSort());
 	}
 	
@@ -196,6 +197,8 @@ public class ExecutionManager {
 				result.quickSortExecutionTime = total;
 			else if(sortingAlgorithms[i] instanceof ParallelMergeSort)
 				result.parallelMergeSortExecutionTime = total;
+			else if(sortingAlgorithms[i] instanceof ParallelQuickSort)
+				result.parallelQuickSortExecutionTime = total;
 			else if(sortingAlgorithms[i] instanceof AdaptiveSort) {
                 result.adaptiveSortExecutionTime = total;
                 //System.out.println("Adaptive Sort Time : " + result.adaptiveSortExecutionTime);
@@ -247,6 +250,7 @@ public class ExecutionManager {
 		public long mergeSortExecutionTime;
 		public long quickSortExecutionTime;
 		public long parallelMergeSortExecutionTime;
+		public long parallelQuickSortExecutionTime;
 		
 		public Result() {}
 	}

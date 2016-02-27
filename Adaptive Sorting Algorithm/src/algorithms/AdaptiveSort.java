@@ -45,7 +45,7 @@ public class AdaptiveSort extends AbstractSort{
                 //System.out.println("Else : " + (System.nanoTime() - t1));
 
                 //shellsortInternal(data);
-                /*for (int l = incs.length / incs[0]; l > 0;) {
+                for (int l = incs.length / incs[0]; l > 0;) {
                     int m = incs[--l];
                     for (int i = m; i < n; ++i) {
                         int j = i - m;
@@ -59,9 +59,9 @@ public class AdaptiveSort extends AbstractSort{
                         }
                     }
                 }
-                */
 
-                native_shellsort(data, data.length);
+
+                //native_shellsort(data, data.length);
             }
             else if(n <= 50 && runs > 44000) {
                 //System.out.println("n <= 50 && runs > 44000 && runs <= 68799 : " + (System.nanoTime() - t1));
@@ -71,25 +71,25 @@ public class AdaptiveSort extends AbstractSort{
             else if(n <= 50 && runs > 25388) {
                 //System.out.println("n <= 50 && runs > 25388 && runs <= 44000 : " + (System.nanoTime() - t1));
 
-                //workingArray = new int[data.length];
-                //mergesort(data, 0, data.length - 1);
+                workingArray = new int[data.length];
+                mergesort(data, 0, data.length - 1);
 
-                native_mergesort(data, data.length);
+                //native_mergesort(data, data.length);
             }
             else {
                 //insertionSortInternal(data);
                 //System.out.println("Runs < 25388 : " + (System.nanoTime() - t1));
 
-                /*int temp, j;
+                int temp, j;
                 for (int i = 1; i < data.length; i++) {
                     temp = data[i];
                     for (j = i - 1; j >= 0 && temp < data[j]; j--)
                         data[j + 1] = data[j];
                     data[j + 1] = temp;
                 }
-                */
 
-                native_insertionsort(data, data.length);
+
+                //native_insertionsort(data, data.length);
             }
         }
         else {
