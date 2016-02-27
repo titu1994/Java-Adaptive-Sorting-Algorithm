@@ -1,12 +1,9 @@
 package testing;
 
-import managers.ExecutionManager;
-
 public class MainTest {
 
 	public static void main(String[] args) {
-        ExecutionManager.APPEND_RESULT = false;
-
+		/*
 		ExecutionManager.processArrayOfType(50, 0, "50-Random");
 		System.out.println("50 Random done");
 		ExecutionManager.processArrayOfType(50, 1, "50-AlmostSorted-1");
@@ -96,7 +93,7 @@ public class MainTest {
 		System.out.println("100000 Almost Sorted 5 done");
 		ExecutionManager.processArrayOfType(100000, 6, "100000-ReverseSorted");
 		System.out.println("100000 Finished 100000");
-
+		
 		ExecutionManager.processArrayOfType(500000, 0, "500000-Random");
 		System.out.println("500000 Random done");
 		ExecutionManager.processArrayOfType(500000, 1, "500000-AlmostSorted-1");
@@ -126,6 +123,7 @@ public class MainTest {
 		System.out.println("1M : Almost Sorted 5 done");
 		ExecutionManager.processArrayOfType(1000000, 6, "1000000-ReverseSorted");
 		System.out.println("Finished 1M");
+		*/
 		
 		System.out.println("End.");
 	}

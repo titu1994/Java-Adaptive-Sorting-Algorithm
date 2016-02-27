@@ -11,7 +11,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by Yue on 27-Feb-16.
  */
 public class ParallelQuickSort extends AbstractSort {
-
+	
+	private static final int MIN_GRANULARITY = 8192;
+			
     private static int THRESHOLD = 1000000;
     private static int NO_OF_THREADS = Runtime.getRuntime().availableProcessors();
     private static ExecutorService executor;
@@ -21,15 +23,16 @@ public class ParallelQuickSort extends AbstractSort {
 
     @Override
     public void sort(int[] data) {
-        if(NO_OF_THREADS == 1) {
+        if(NO_OF_THREADS == 1 || data.length <= MIN_GRANULARITY) {
             Arrays.sort(data);
             return;
         }
-
-        THRESHOLD = (NO_OF_THREADS > 1) ? (1 + data.length / ((NO_OF_THREADS) << 3)) : data.length;
-        //System.out.println("Threshold : " + THRESHOLD);
+        
+        int g;
+        THRESHOLD = (g = (data.length / (NO_OF_THREADS << 2))) <= MIN_GRANULARITY ?  MIN_GRANULARITY: g;
+        
         counter.set(1);
-        executor = Executors.newCachedThreadPool();
+        executor = Executors.newFixedThreadPool(NO_OF_THREADS);
 
         counter.getAndIncrement();
         executor.submit(quickSortCallable(0, data.length - 1, data));
