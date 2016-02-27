@@ -5,6 +5,7 @@ import managers.ExecutionManager;
 public class MainTest {
 
 	public static void main(String[] args) {
+        ExecutionManager.APPEND_RESULT = false;
 
 		ExecutionManager.processArrayOfType(50, 0, "50-Random");
 		System.out.println("50 Random done");
