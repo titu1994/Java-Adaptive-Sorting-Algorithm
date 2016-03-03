@@ -1,9 +1,11 @@
 package testing;
 
+import managers.ExecutionManager;
+
 public class MainTest {
 
 	public static void main(String[] args) {
-		/*
+		
 		ExecutionManager.processArrayOfType(50, 0, "50-Random");
 		System.out.println("50 Random done");
 		ExecutionManager.processArrayOfType(50, 1, "50-AlmostSorted-1");
@@ -123,7 +125,7 @@ public class MainTest {
 		System.out.println("1M : Almost Sorted 5 done");
 		ExecutionManager.processArrayOfType(1000000, 6, "1000000-ReverseSorted");
 		System.out.println("Finished 1M");
-		*/
+		
 		
 		System.out.println("End.");
 	}
