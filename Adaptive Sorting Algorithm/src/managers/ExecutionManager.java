@@ -34,6 +34,24 @@ public class ExecutionManager {
 		}
 	}
 	
+	/**
+	 * Applies only Adaptive Sort algorithm on the given data set.
+	 * @param size - 100, 1000, 10000...
+	 * @param type - 0 to 6 : See ArrayManager.Type... integers for meaning
+	 * @param filename - Filename to store the results
+	 */
+	public static void processArrayOfTypeUsingAdaptiveSort(int size, int type, String filename) {
+		int[] data = null;
+		Result result = null;
+		
+		data = loadNextArray(size, type);
+		while(data != null) {
+			result = executeAdaptiveSortAlgorithm(data, type);
+			writeResultToFile(filename, result);
+			data = loadNextArray(size, type);
+		}
+	}
+	
 	private static int[] loadNextArray(int size, int type) {
 		int data[] = null;
 		switch(type) {
@@ -133,6 +151,12 @@ public class ExecutionManager {
 		return data;
 	}
 	
+	/**
+	 * Method to calculate the execution time of all sorting algorithms
+	 * @param data
+	 * @param type
+	 * @return
+	 */
 	private static Result executeAllSortingAlgorithms(int data[], int type) {
 		return executeSortingAlgorithm(data, type, new InsertionSort(), 
 											 	   new ShellSort(),
@@ -155,7 +179,13 @@ public class ExecutionManager {
 		//System.out.println("Succesfully saved results to file.");
 	}
 	
-	
+	/**
+	 * Helper method to execute every single sorting algorithm which is derived from AbstractSort.
+	 * @param data
+	 * @param type
+	 * @param sortingAlgorithms
+	 * @return
+	 */
 	private static Result executeSortingAlgorithm(int data[], int type, AbstractSort... sortingAlgorithms) {
 		Result result = new Result();
 		result.arraySize = data.length;
@@ -201,13 +231,27 @@ public class ExecutionManager {
 				result.parallelQuickSortExecutionTime = total;
 			else if(sortingAlgorithms[i] instanceof AdaptiveSort) {
                 result.adaptiveSortExecutionTime = total;
-                //System.out.println("Adaptive Sort Time : " + result.adaptiveSortExecutionTime);
             }
 
 		}
 		
 		return result;		
 	}
+	
+	/**
+	 * Method to calculate the execution time of only Adaptive Sorting algorithm
+	 * @param data
+	 * @param type
+	 * @return
+	 */
+	private static Result executeAdaptiveSortAlgorithm(int data[], int type) {
+		return executeSortingAlgorithm(data, type, new AdaptiveSort());
+	}
+	
+	
+	///
+	/// Analysis of Runs vs Invs for arrays
+	///
 	
 	public static void analyzeArrayOfType(int size, int type, String filename) {
 		int[] data = null;

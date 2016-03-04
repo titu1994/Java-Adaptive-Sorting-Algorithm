@@ -92,34 +92,13 @@ public class AdaptiveSort extends AbstractSort{
                 //native_insertionsort(data, data.length);
             }
         }
-        else {
+        else if (n < 500000){
             // Parallel Merge Sort
             Arrays.parallelSort(data);
         }
-    }
-
-    private static void iterativeMergeSort(int data[]) {
-        for (int i = 1; i <= data.length / 2 + 1; i *= 2)
-        {
-            for (int j = i; j < data.length; j += 2 * i)
-            {
-                iterativeMerge(data, j - i, j, Math.min(j + i, data.length));
-            }
+        else {
+        	ParallelQuickSort.sortStatic(data);
         }
-    }
-    private static void iterativeMerge(int[] data, int start, int middle, int end) {
-        int[] merge = new int[end-start];
-        int l = 0, r = 0, i = 0;
-        while (l < (middle- start) && r < (end- middle))
-        {
-            merge[i++] = data[start + l] <  data[middle + r] ? data[start + l++] : data[middle + r++];
-        }
-
-        while (r < (end - middle)) merge[i++] = data[middle + r++];
-
-        while (l < (middle - start)) merge[i++] = data[start + l++];
-
-        System.arraycopy(merge, 0, data, start, merge.length);
     }
 
     private static void mergesort(int data[], int low, int high) {
@@ -166,34 +145,4 @@ public class AdaptiveSort extends AbstractSort{
             data[j + 1] = temp;
         }
     }
-
-    private static int binarySearch(int data[], int key, int low, int high) {
-        while (low <= high) {
-            int imid = (low + high) >>> 1;
-            if (data[imid] == key)
-                return imid;
-            else if (data[imid] < key)
-                low = imid + 1;
-            else
-                high = imid - 1;
-        }
-        return -1;
-    }
-
-    private static void binaryInsertionSort(int data[]) {
-        int i, loc, j, k, selected;
-
-        for (i = 1; i < data.length; i++) {
-            j = i - 1;
-            selected = data[i];
-            loc = binarySearch(data, selected, 0, j);
-
-            while (j >= loc) {
-                data[j+1] = data[j];
-                j--;
-            }
-            data[j+1] = selected;
-        }
-    }
-
 }

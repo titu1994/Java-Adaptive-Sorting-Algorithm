@@ -54,6 +54,39 @@ public class ParallelQuickSort extends AbstractSort {
             e.printStackTrace();
         }
     }
+    
+    public static void sortStatic(int data[]) {
+    	if(NO_OF_THREADS == 1 || data.length <= MIN_GRANULARITY) {
+            Arrays.sort(data);
+            return;
+        }
+        
+        int g;
+        THRESHOLD = (g = (data.length / (NO_OF_THREADS << 2))) <= MIN_GRANULARITY ?  MIN_GRANULARITY: g;
+        
+        counter.set(1);
+        executor = Executors.newFixedThreadPool(NO_OF_THREADS);
+
+        counter.getAndIncrement();
+        executor.submit(quickSortCallable(0, data.length - 1, data));
+
+        synchronized (lock) {
+            while(counter.get() > 1) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     private static Runnable quickSortCallable(int low, int high, int data[]) {
         Runnable r = new Runnable() {
