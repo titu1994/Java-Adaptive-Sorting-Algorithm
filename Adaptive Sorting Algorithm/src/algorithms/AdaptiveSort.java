@@ -38,14 +38,13 @@ public class AdaptiveSort extends AbstractSort{
                 if (data[i - 1] >= data[i])
                     subsetCount++;
             }
+            // Compute runs in long to reduce execution cycles and boost speed
             runs = (long) ((subsetCount/ (double) n) * 100000);
-            //System.out.println(runs);
-
+            
             if(runs > 68799) {
-                //System.out.println("Else : " + (System.nanoTime() - t1));
-
-                //shellsortInternal(data);
-                for (int l = incs.length / incs[0]; l > 0;) {
+                // Shell Sort
+               
+            	for (int l = incs.length / incs[0]; l > 0;) {
                     int m = incs[--l];
                     for (int i = m; i < n; ++i) {
                         int j = i - m;
@@ -59,25 +58,22 @@ public class AdaptiveSort extends AbstractSort{
                         }
                     }
                 }
-
-
+                
                 //native_shellsort(data, data.length);
             }
-            else if(n <= 50 && runs > 44000) {
-                //System.out.println("n <= 50 && runs > 44000 && runs <= 68799 : " + (System.nanoTime() - t1));
-
+            else if(n <= 50 && runs > 44000) { // Short Circuit AND to stop if n > 50
+                // Parallel Merge Sort
                 Arrays.parallelSort(data);
             }
-            else if(n <= 50 && runs > 25388) {
-                //System.out.println("n <= 50 && runs > 25388 && runs <= 44000 : " + (System.nanoTime() - t1));
-
+            else if(n <= 50 && runs > 25388) { // Short Circuit AND to stop if n > 50
+                // Merge Sort
                 workingArray = new int[data.length];
                 mergesort(data, 0, data.length - 1);
 
                 //native_mergesort(data, data.length);
             }
-            else {
-                //insertionSortInternal(data);
+            else { // If all else failes
+                // Insertion sort
                 //System.out.println("Runs < 25388 : " + (System.nanoTime() - t1));
 
                 int temp, j;
@@ -88,15 +84,19 @@ public class AdaptiveSort extends AbstractSort{
                     data[j + 1] = temp;
                 }
 
-
                 //native_insertionsort(data, data.length);
             }
+        }
+        else if (n <= 1000) {
+        	// Quick Sort
+        	quicksort(data, 0, data.length - 1);
         }
         else if (n < 500000){
             // Parallel Merge Sort
             Arrays.parallelSort(data);
         }
         else {
+        	// Parallel Quick Sort
         	ParallelQuickSort.sortStatic(data);
         }
     }
@@ -135,6 +135,41 @@ public class AdaptiveSort extends AbstractSort{
             i++;
         }
     }
+    
+    private void quicksort(int data[], int low, int high) {
+		if((high - low) <= THRESHOLD) {
+			Arrays.sort(data, low, high + 1);
+			return;
+		}
+		 
+		int i = low, j = high;
+		int pivot = data[(low + high) >>> 1];
+		int temp;
+		
+		while (i <= j) {
+			while (data[i] < pivot) {
+				i++;
+			}
+			
+			while (data[j] > pivot) {
+				j--;
+			}
+
+			if (i <= j) {
+				temp = data[i];
+				data[i] = data[j];
+				data[j] = temp;
+				i++;
+				j--;
+			}
+		}
+		if (low < j) {
+			quicksort(data, low, j);
+		}
+		if (i < high) {
+			quicksort(data, i, high);
+		}
+	}
 
     private static void insertionSort(int data[]) {
         int temp, j;

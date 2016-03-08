@@ -2,7 +2,7 @@ package testing;
 
 import managers.ExecutionManager;
 
-public class MainTest {
+public class AlgorithmAnalysis {
 
 	public static void main(String[] args) {
 		
